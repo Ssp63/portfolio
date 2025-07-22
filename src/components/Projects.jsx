@@ -3,15 +3,15 @@
 const projectData = [
     {
       id: 1,
-      title: 'Project One',
-      description: 'A brief description of my first awesome project. It does X, Y, and Z.',
-      link: '#', 
+      title: 'Nasha Mukti Portal (Sangli ZP)',
+      description: 'A multilingual (Marathi-English) platform offering level-based recovery support for drug addiction. Designed for both the public and government handover.',
+      link: 'www.zpsanglijataayu.in', 
     },
     {
       id: 2,
-      title: 'Project Two',
-      description: 'This project focused on using [Technology] to solve [Problem].',
-      link: '#',
+      title: 'Automated Info retrieval System(RAG AI)',
+      description: ' A application that uses RAG AI to retrieve information from a given text/pdf.',
+      link: 'https://github.com/Ssp63/DocumentQA',
     },
   ];
   
