@@ -1,38 +1,484 @@
+/* --- Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap');
+
+/* --- CSS Variables (Color Palette & Common Values) --- */
+:root {
+  --primary-color: #3A7CA5; /* A muted, professional blue */
+  --primary-darker: #2F6690;
+  --secondary-color: #FFD700; /* Gold accent - use sparingly */
+  --light-bg: #F8F9FA; /* Very light grey for body */
+  --container-bg: #FFFFFF;
+  --text-dark: #2A323C; /* Dark grey, softer than pure black */
+  --text-light: #5C677D; /* Lighter grey for less emphasis */
+  --border-color: #E9ECEF; /* Light border color */
+  --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+  --card-hover-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  --header-bg: #2A323C; /* Dark background for header */
+  --header-text: #E0E0E0;
+  --hero-bg: #D9EAF3; /* Light, inviting blue for hero */
+  --border-radius: 8px;
+  --transition-speed: 0.3s;
+
+  /* === ADDED: Scroll offset for sticky header === */
+  --header-height-desktop: 75px; /* Estimated desktop header height + buffer */
+  --header-height-mobile: 200px; /* Estimated mobile header height + buffer */
+}
+
+/* --- Basic Reset & Global Styles --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.7;
+  color: var(--text-dark);
+  background-color: var(--light-bg);
+  font-size: 16px; /* Base font size */
+}
+
 .App {
+  max-width: 1200px; /* Slightly wider for modern feel */
+  margin: 0 auto;
+  background-color: var(--container-bg);
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08); /* Softer, more spread shadow */
+}
+
+main {
+  padding: 0 30px; /* Increased padding */
+}
+
+/* --- Typography --- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.3;
+  margin-bottom: 1rem;
+}
+
+h1 { font-size: 2.8rem; margin-bottom: 0.75rem; }
+h2 { font-size: 2.2rem; margin-bottom: 1.5rem; } /* Section headings */
+h3 { font-size: 1.5rem; } /* Card titles, etc. */
+
+p {
+  margin-bottom: 1.25rem;
+  color: var(--text-light);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+  color: var(--primary-darker);
+  text-decoration: underline;
+}
+
+/* --- Sections --- */
+section {
+  padding: 60px 30px; /* More vertical padding */
+  border-bottom: 1px solid var(--border-color);
+  /* === ADDED: Offset for sticky header === */
+  scroll-margin-top: var(--header-height-desktop);
+}
+
+section:last-of-type {
+  border-bottom: none;
+}
+
+.section-title { /* Reusable class for consistent section headings */
   text-align: center;
+  margin-bottom: 40px;
+  color: var(--primary-darker);
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 10px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.section-title::after { /* Decorative underline for section titles */
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+/* --- Header / Navbar --- */
+.app-header {
+  background: var(--header-bg);
+  color: var(--header-text);
+  padding: 1rem 30px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for sticky header */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app-header nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.app-header nav a {
+  color: var(--header-text);
+  margin: 0.5rem 18px;
+  font-weight: 500; /* Poppins medium */
+  padding: 0.5rem 0;
+  font-family: 'Poppins', sans-serif;
+  transition: color var(--transition-speed) ease;
+}
+
+.app-header nav a:hover,
+.app-header nav a.active { /* Example for active link styling */
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+  background: var(--hero-bg);
+  text-align: center;
+  padding: 80px 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  min-height: 70vh; /* Give it more presence */
+  /* Hero is also a section, so it will get scroll-margin-top */
+}
+
+.profile-pic {
+  width: 180px; /* Larger profile pic */
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  margin-bottom: 25px;
+  border: 5px solid var(--container-bg); /* White border for separation */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.hero-section h1 {
+  font-size: 3.5rem; /* Larger hero title */
+  font-weight: 700;
+  color: var(--primary-darker);
+  margin-bottom: 0.75rem;
+}
+
+.hero-section p.subtitle { /* Special class for hero subtitle */
+  font-size: 1.5rem;
+  color: var(--text-dark); /* Slightly darker for better contrast on light hero bg */
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+
+/* --- About Section --- */
+.about-section .section-title,
+.projects-section .section-title,
+.contact-section .section-title,
+.blog-section .section-title { /* Apply to all section titles for consistency */
+    /* .section-title class above handles this */
+}
+
+.skills-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.skills-list li {
+  background: var(--primary-color);
+  color: white;
+  padding: 10px 20px;
+  border-radius: var(--border-radius);
+  font-size: 0.95rem;
+  font-weight: 500;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: background-color var(--transition-speed) ease, transform 0.2s ease;
+}
+
+.skills-list li:hover {
+  background: var(--primary-darker);
+  transform: translateY(-2px);
+}
+
+.about-actions {
+  margin-top: 30px;
+  margin-bottom: 10px; /* Reduced as section padding will handle space */
+  text-align: center;
+}
+
+/* --- Projects Section --- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Min card width */
+  gap: 30px;
+}
+
+.project-card {
+  background: var(--container-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 25px;
+  box-shadow: var(--card-shadow);
+  transition: transform var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* For image fitting */
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--card-hover-shadow);
+}
+
+.project-card img {
+  max-width: 100%;
+  height: 200px; /* Fixed height for consistency */
+  object-fit: cover; /* Ensure image covers area without distortion */
+  border-radius: var(--border-radius) var(--border-radius) 0 0; /* Round top corners */
+  margin: -25px -25px 20px -25px; /* Make image stretch to card edges */
+  border-bottom: 1px solid var(--border-color);
+}
+
+.project-card h3 {
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+}
+
+.project-card p {
+  flex-grow: 1;
+  margin-bottom: 20px; /* More space before button */
+  font-size: 0.95rem;
+  color: var(--text-light);
+}
+
+.project-card .btn { /* Using the .btn class for project links */
+  align-self: flex-start;
+  margin-top: auto; /* Pushes button to bottom if card content varies */
+}
+
+
+/* --- Contact Section --- */
+.contact-section {
+  text-align: center;
+}
+
+.contact-section p {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+.contact-section p a {
+  font-weight: 600;
+}
+
+/* --- Blog Section (if you add it later) --- */
+.blog-section {
+  text-align: center;
+}
+.blog-section p {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  max-width: 700px; /* Control line length for readability */
+  margin: 0 auto 20px auto;
+}
+
+/* --- Buttons --- */
+.btn {
+  display: inline-block;
+  padding: 12px 28px; /* Larger padding */
+  font-size: 1rem;
+  font-weight: 600; /* Poppins semibold */
+  text-align: center;
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, transform 0.2s ease, box-shadow var(--transition-speed) ease;
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.btn-primary:hover {
+  background-color: var(--primary-darker);
+  color: white; /* Ensure text color remains white */
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.btn-secondary { /* Example for a secondary button style */
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(var(--primary-color), 0.2);
+}
+
+
+/* --- Footer --- */
+.app-footer {
+  text-align: center;
+  padding: 30px 20px; /* More padding */
+  background: var(--header-bg);
+  color: var(--header-text); /* Consistent with header text */
+  margin-top: 0; /* Sections now have bottom border/padding, so less need for top margin here */
+  font-size: 0.9rem;
+}
+.app-footer p {
+    margin-bottom: 0;
+    color: var(--header-text); /* Ensure p inside footer also gets correct color */
+}
+
+
+/* --- Responsive Design Adjustments --- */
+@media (max-width: 991.98px) {
+  main {
+    padding: 0 20px;
   }
-  to {
-    transform: rotate(360deg);
+  section {
+    padding: 50px 20px;
+    /* scroll-margin-top will still be var(--header-height-desktop) here, which is likely fine */
   }
+  .hero-section h1 {
+    font-size: 2.8rem;
+  }
+  .hero-section p.subtitle {
+    font-size: 1.3rem;
+  }
+  .profile-pic {
+    width: 150px;
+    height: 150px;
+  }
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 2rem; }
+}
+
+@media (max-width: 767.98px) {
+  body {
+    font-size: 15px; /* Slightly smaller base font for smaller screens */
+  }
+  .App {
+    margin: 0;
+    box-shadow: none;
+  }
+  main {
+    padding: 0 15px;
+  }
+  .app-header {
+    padding: 0.8rem 15px;
+  }
+  .app-header nav {
+    flex-direction: column;
+    align-items: center;
+  }
+  .app-header nav a {
+    margin: 10px 0; /* Increased vertical margin for stacked links */
+    padding: 0.5rem 0;
+  }
+  section {
+    padding: 40px 15px;
+    /* === ADDED: Adjust scroll offset for taller mobile header === */
+    scroll-margin-top: var(--header-height-mobile);
+  }
+  .hero-section {
+    padding: 60px 15px;
+    min-height: auto; /* Allow hero to shrink more on small screens */
+  }
+  .profile-pic {
+    width: 120px;
+    height: 120px;
+  }
+  .hero-section h1 {
+    font-size: 2.2rem;
+  }
+  .hero-section p.subtitle {
+    font-size: 1.1rem;
+  }
+  h1 { font-size: 2.2rem; }
+  h2.section-title { font-size: 1.8rem; margin-bottom: 30px;}
+  h3 {font-size: 1.3rem;}
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  .project-card {
+    padding: 20px;
+  }
+  .project-card img {
+    height: 180px; /* Adjust image height for single column */
+    margin: -20px -20px 15px -20px;
+  }
+  .contact-section p {
+    font-size: 1rem;
+  }
+  .btn {
+    padding: 10px 22px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .profile-pic {
+    width: 100px;
+    height: 100px;
+  }
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+  .hero-section p.subtitle {
+    font-size: 1rem;
+  }
+  h1 { font-size: 2rem; }
+  h2.section-title { font-size: 1.6rem; }
+  h3 {font-size: 1.2rem;}
+
+  .skills-list li {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+  .project-card a.btn {
+    padding: 9px 18px;
+    font-size: 0.9rem;
+  }
+  /* The section scroll-margin-top from the 767.98px breakpoint will still apply here, which is correct. */
 }
