@@ -5,7 +5,7 @@ const projectData = [
       id: 1,
       title: 'Nasha Mukti Portal (Sangli ZP)',
       description: 'A multilingual (Marathi-English) platform offering level-based recovery support for drug addiction. Designed for both the public and government handover.',
-      link: 'www.zpsanglijataayu.in', 
+      link: 'https://www.zpsanglijataayu.in/', 
     },
     {
       id: 2,
