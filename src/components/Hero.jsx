@@ -6,7 +6,7 @@ function Hero() {
         <p>Passionate Web Developer |AI Enthusiast | Full Stack Developer| Lifelong Learner</p> {/* Craft your own engaging tagline */}
         <img
           src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" // A generic placeholder image URL
-          alt="Shreyash Pawar - Profile Picture" // Update alt text to match the name
+          alt="Shreyash Pawar" // Update alt text to match the name
           className="profile-pic"
         />
       </section>

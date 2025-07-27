@@ -1,4 +1,5 @@
 import './App.css';
+import './components/improved-ui.css';
 
 // Import Components
 import Header from './components/Header';

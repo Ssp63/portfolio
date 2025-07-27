@@ -224,6 +224,7 @@ section:last-of-type {
 
 .skills-list li:hover {
   background: var(--primary-darker);
+  color: white;
   transform: translateY(-2px);
 }
 
